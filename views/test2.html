@@ -1,93 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
   <style>
-    .drop-zone {
-      background-color: #f1f1f1;
-      border: 2px dashed #ccc;
+#linkedin{
+  width: 40px;
+  border-radius: 6px;
+  margin: 4px;
+  height: 35px;
+}
+#linkedin:hover{
+opacity: 0.5;
+}
+    #insta {
+      width: 60px;
+      height: 50px;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: 100vh; */
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 600px;
+    }
+
+    .team-card {
+      background-color: #e1d7d7;
       border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(233, 227, 227, 0.1);
       padding: 20px;
+      width: 250px;
       text-align: center;
-      cursor: pointer;
     }
-    
-    .drop-zone.highlight {
-      background-color: #e2e2e2;
-    }
-    
-    .file-input {
-      display: none;
-    }
-    
-    .file-input-label {
-      display: inline-block;
-      background-color: #4CAF50;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    
-    .file-input-label:hover {
-      background-color: #45a049;
-    }
-    
-    .file-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    
-    .file-item {
+
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
       margin-bottom: 10px;
     }
+
+    .team-card h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .team-card p {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    .team-card a {
+      display: inline-block;
+      /* background-color: #4285F4; */
+      color: #fff;
+      text-decoration: none;
+      /* padding: 8px 16px; */
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+   
   </style>
+  <title>Team Member Cards</title>
 </head>
 <body>
-  <div class="drop-zone" id="dropZone">
-    <span>Drag and drop files here</span><br>
-    <span>or</span><br>
-    <label for="fileInput" class="file-input-label">Browse Files</label>
-    <input type="file" id="fileInput" class="file-input" multiple>
+  <div class="card-container">
+    <div class="team-card">
+      <img src="../assets/pp.jpg" alt="Team Member 1">
+      <h3>Pruthviraj Patil</h3>
+      <a href="">
+
+        <img id="linkedin" src="../assets/linkedin.png" alt="">
+      </a>
+      <a href="">
+      <img id="linkedin" src="../assets/insta.png" alt=""></a>
+      <a href="">
+
+        <img id="linkedin" src="../assets/twitter.png" alt="">
+      </a>
+    </div>
+    <div class="team-card">
+      <img src="../assets/adil.jpeg" alt="Team Member 2">
+      <h3>Adil Khatri</h3>
+      <a href="">
+
+        <img id="linkedin" src="../assets/linkedin.png" alt="">
+      </a>
+      <a href="">
+      <img id="linkedin" src="../assets/insta.png" alt=""></a>
+      <a href="">
+
+        <img id="linkedin" src="../assets/twitter.png" alt="">
+      </a>
+    </div>
+    <div class="team-card">
+      <img src="../assets/harsh.jpg" alt="Team Member 3">
+      <h3>Mike Johnson</h3>
+      <a href="">
+
+        <img id="linkedin" src="../assets/linkedin.png" alt="">
+      </a>
+      <a href="">
+      <img id="linkedin" src="../assets/insta.png" alt=""></a>
+      <a href="">
+
+        <img id="linkedin" src="../assets/twitter.png" alt="">
+      </a>
+    </div>
+    <div class="team-card">
+      <img src="../assets/shubam.png" alt="Team Member 4">
+      <h3>Sarah Davis</h3>
+      <br>
+      <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i>
+      <a href="">
+
+        <img id="linkedin" src="../assets/linkedin.png" alt="">
+      </a>
+      <a href="">
+      <img id="linkedin" src="../assets/insta.png" alt=""></a>
+      <a href="">
+
+        <img id="linkedin" src="../assets/twitter.png" alt="">
+      </a>
+
+
+    </div>
   </div>
 
-  <ul id="fileList" class="file-list"></ul>
-
-  <script>
-    var dropZone = document.getElementById('dropZone');
-    var fileInput = document.getElementById('fileInput');
-    var fileList = document.getElementById('fileList');
-
-    dropZone.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      dropZone.classList.add('highlight');
-    });
-
-    dropZone.addEventListener('dragleave', function(e) {
-      e.preventDefault();
-      dropZone.classList.remove('highlight');
-    });
-
-    dropZone.addEventListener('drop', function(e) {
-      e.preventDefault();
-      dropZone.classList.remove('highlight');
-      var files = e.dataTransfer.files;
-      handleFiles(files);
-    });
-
-    fileInput.addEventListener('change', function() {
-      var files = fileInput.files;
-      handleFiles(files);
-    });
-
-    function handleFiles(files) {
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var listItem = document.createElement('li');
-        listItem.classList.add('file-item');
-        listItem.textContent = file.name;
-        fileList.appendChild(listItem);
-      }
-    }
-  </script>
+  
 </body>
 </html>
