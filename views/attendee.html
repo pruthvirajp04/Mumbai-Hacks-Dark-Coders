@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!----======== CSS ======== -->
-     <link rel="stylesheet" href="../css/summarize.css">
+     <link rel="stylesheet" href="../css/attendee.css">
+
      <link rel="stylesheet" href="../css/sidebar.css">
 
 
@@ -37,7 +38,7 @@
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Summarize text</span>
                 </a></li>
-                <li><a href="./attendee.html">
+                <li><a href="#">
                     <i class="uil uil-chart"></i>
                     <span class="link-name">Get Attendance</span>
                 </a></li>
@@ -90,40 +91,46 @@
                         
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Summarize any vtt file in a click</span>
+                    <span class="text">Get attendance in a click</span>
                 </div>
-                        <div class="btnBox">
                     
-                          <button id="textButton" onclick="toggleText()">Paste Your Text</button>
-                          <button id="uploadButton" onclick="toggleUpload()">Upload a File</button>
-                        </div>
-                        <form action="summary_result.html">
-                            <div id="textContainer" class="hidden">
-                                <textarea placeholder="Enter your raw text here "></textarea>
-                                <br>
-                              </div>
-                              <div id="uploadContainer" class="hidden">
-                                <input type="file" id="fileInput" accept=".txt">
-                                <p>Drag and drop files here</p>
-                                
-                            </div>
-                            <div class="finalBtn">
-                                <button id="submitButton" type="submit" class="hidden">SUBMIT</button>
-                                <button id="resetButton" type="reset" class="hidden">RESET</button>
-                              </div>
-
-                        </form>
              
                        
                       </div>
-               
+                      <div class="formBox">
+
+                          <div class="form-container">
+    
+                              <form id="fileForm" action="">
+                       <div class="dropBox">
+                        <div class="drop-zone" id="dropZone">
+                            <span>Drag and drop files here</span><br>
+                            <span>or</span><br>
+                            <label for="fileInput" class="file-input-label">Browse Files</label>
+                            <input type="file" id="fileInput" class="file-input" multiple>
+                          </div>
+                        
+                          <ul id="fileList" class="file-list"></ul>
+                          <br>
+                          <div class="btnBox">
+        
+                              <button type="submit">Submit</button>
             
+                              <button type="reset" onclick="resetForm()">Reset</button>
+                          </div>
+                        </div>
+        
+                    </form>
+                          </div>
+                      </div>
+           
   
    
         </div>
+        
     </section>
+ 
 
-    <script src="../js/summarize.js"></script>
 </body>
 </html>
 <script>
@@ -158,52 +165,47 @@ sidebarToggle.addEventListener("click", () => {
     }else{
         localStorage.setItem("status", "open");
     }
-})
+});
+
+function resetForm() {
+  document.getElementById("fileForm").reset();
+  document.getElementById("fileList").innerHTML = "";
+}
 </script>
 <script>
-    // Function to check if an element is in the viewport
-   function isInViewport(element) {
-     var rect = element.getBoundingClientRect();
-     return (
-       rect.top >= 0 &&
-       rect.left >= 0 &&
-       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-     );
-   }
-   
-   // Function to handle scroll event
-   function handleScroll() {
-     var animatedImage = document.querySelector('.animated-image');
-     var animatedImage1 = document.querySelector('.animated-image1');
-     var animatedImage2 = document.querySelector('.animated-image2');
-     var animatedImage3 = document.querySelector('.animated-image3');
-     var animatedImage4 = document.querySelector('.animated-image4');
+    var dropZone = document.getElementById('dropZone');
+    var fileInput = document.getElementById('fileInput');
+    var fileList = document.getElementById('fileList');
 
-     var animatedImage5 = document.querySelector('.animated-image5');
+    dropZone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      dropZone.classList.add('highlight');
+    });
 
-     var animatedImage6 = document.querySelector('.animated-image6');
+    dropZone.addEventListener('dragleave', function(e) {
+      e.preventDefault();
+      dropZone.classList.remove('highlight');
+    });
 
+    dropZone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropZone.classList.remove('highlight');
+      var files = e.dataTransfer.files;
+      handleFiles(files);
+    });
 
+    fileInput.addEventListener('change', function() {
+      var files = fileInput.files;
+      handleFiles(files);
+    });
 
-
-     
-     if (isInViewport(animatedImage)) {
-       animatedImage.classList.add('show');
-       animatedImage1.classList.add('show');
-       animatedImage2.classList.add('show');
-       animatedImage3.classList.add('show');
-       animatedImage4.classList.add('show');
-       animatedImage5.classList.add('show');
-       animatedImage6.classList.add('show');
-
-
-
-
-     }
-   }
-   
-   // Attach scroll event listener
-   window.addEventListener('scroll', handleScroll);
-   
-   </script>
+    function handleFiles(files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var listItem = document.createElement('li');
+        listItem.classList.add('file-item');
+        listItem.textContent = file.name;
+        fileList.appendChild(listItem);
+      }
+    }
+  </script>

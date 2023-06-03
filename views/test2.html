@@ -1,40 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    .main-box {
-      width: 60%;
-      height: 300px;
-      margin: 0 auto;
-      padding: 4rem;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    .drop-zone {
+      background-color: #f1f1f1;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
     }
     
-    .aesthetic-textarea {
-      width: 100%;
-      height: 250px;
-      resize: none;
-      font-family: 'Arial', sans-serif;
-      font-size: 14px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: #f2f2f2;
-      border: 2px solid black;
-      text-align: center;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      font-size: 20px;
+    .drop-zone.highlight {
+      background-color: #e2e2e2;
+    }
+    
+    .file-input {
+      display: none;
+    }
+    
+    .file-input-label {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .file-input-label:hover {
+      background-color: #45a049;
+    }
+    
+    .file-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .file-item {
+      margin-bottom: 10px;
     }
   </style>
-  <title>Aesthetic Text Area</title>
 </head>
 <body>
-  <div class="main-box">
-    <textarea class="aesthetic-textarea"></textarea>
+  <div class="drop-zone" id="dropZone">
+    <span>Drag and drop files here</span><br>
+    <span>or</span><br>
+    <label for="fileInput" class="file-input-label">Browse Files</label>
+    <input type="file" id="fileInput" class="file-input" multiple>
   </div>
+
+  <ul id="fileList" class="file-list"></ul>
+
+  <script>
+    var dropZone = document.getElementById('dropZone');
+    var fileInput = document.getElementById('fileInput');
+    var fileList = document.getElementById('fileList');
+
+    dropZone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      dropZone.classList.add('highlight');
+    });
+
+    dropZone.addEventListener('dragleave', function(e) {
+      e.preventDefault();
+      dropZone.classList.remove('highlight');
+    });
+
+    dropZone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropZone.classList.remove('highlight');
+      var files = e.dataTransfer.files;
+      handleFiles(files);
+    });
+
+    fileInput.addEventListener('change', function() {
+      var files = fileInput.files;
+      handleFiles(files);
+    });
+
+    function handleFiles(files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var listItem = document.createElement('li');
+        listItem.classList.add('file-item');
+        listItem.textContent = file.name;
+        fileList.appendChild(listItem);
+      }
+    }
+  </script>
 </body>
 </html>
