@@ -88,7 +88,7 @@ nav.close ~ .dashboard{
     justify-content: space-between;
     align-items: center;
     padding: 10px 14px;
-    background-color: var(--panel-color);
+    background-color:#f2f1f1;
     transition: var(--tran-05);
     z-index: 10;
 }
@@ -140,6 +140,7 @@ nav.close ~ .dashboard .top{
 .dash-content .title{
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 60px 0 30px 0;
 }
 .dash-content .title i{
@@ -334,7 +335,8 @@ nav.close ~ .dashboard .top{
 }
 .services{
     display: flex;
-    justify-content: center;
+    /* justify-content: left; */
+    /* justify-content: flex-start; */
     align-items: center;
     flex-direction: column;
 }
@@ -383,4 +385,15 @@ nav.close ~ .dashboard .top{
  }
  .first img{
   width: 250px;
+ }
+ .boxBox{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -34px;
+ }
+ .boxIMG{
+  display: flex;
+  justify-content: center;
+  align-items: center;
  }
