@@ -1,64 +1,172 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Animated Pop-up on Scroll</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js"></script>
-    <style>
-.container {
-  height: 2000px; /* This is just to create a scrollable area */
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="script.js"></script>
+  <style>
+    .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }
 
-.animated-image {
-  opacity: 0; /* Initially hide the image */
-  transform: scale(0.8); /* Scale down the image */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Add transition effects */
+button {
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-.animated-image.show {
-  opacity: 1; /* Show the image */
-  transform: scale(1); /* Scale back the image to its original size */
+button:hover {
+  background-color: #3367D6;
+}
+
+button:focus {
+  outline: none;
 }
 
 
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Scroll down to see the animation</h1>
-        <img class="animated-image" src="./teams.png" alt="Animated Image">
-        
-      </div>
-      <img class="animated-image" src="./teams.png" alt="Animated Image">
 
-   
-
-      
-      
-</body>
-</html>
-<script>
- // Function to check if an element is in the viewport
-function isInViewport(element) {
-  var rect = element.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
+textarea {
+  width: 600px;
+  height: 300px;
+  border-radius: 20px;
+  padding: 1rem;
+  font-size: 20px;
+  border: 2px solid black;
+  resize: none;
+  text-align: center;
 }
 
-// Function to handle scroll event
-function handleScroll() {
-  var animatedImage = document.querySelector('.animated-image');
-  
-  if (isInViewport(animatedImage)) {
-    animatedImage.classList.add('show');
+.hidden {
+  display: none;
+}
+
+#uploadContainer {
+  border: 2px dashed #ddd;
+  padding: 20px;
+  text-align: center;
+}
+
+#uploadContainer p {
+  margin-top: 20px;
+  color: #aaa;
+}
+
+#uploadContainer.dragover {
+  border-color: #4CAF50;
+}
+
+#uploadContainer.dragover p {
+  color: #4CAF50;
+}
+@keyframes popup {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes popup {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-// Attach scroll event listener
-window.addEventListener('scroll', handleScroll);
+.popup {
+  animation: popup 0.3s ease-in-out;
+}
+
+.popup {
+  animation: popup 0.3s ease-in-out;
+}
+.btnBox{
+    display: flex;
+   
+  }
+  .btnBox button{
+    margin: 1rem;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="btnBox">
+
+      <button id="textButton" onclick="toggleText()">Paste Your Text</button>
+      <button id="uploadButton" onclick="toggleUpload()">Upload a File</button>
+    </div>
+    <div id="textContainer" class="hidden">
+      <textarea placeholder="Enter your raw text here "></textarea>
+    </div>
+    <div id="uploadContainer" class="hidden">
+      <input type="file" id="fileInput" accept=".txt">
+      <p>Drag and drop files here</p>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+function toggleText() {
+  var textContainer = document.getElementById("textContainer");
+  var uploadContainer = document.getElementById("uploadContainer");
+
+  textContainer.classList.toggle("hidden");
+  uploadContainer.classList.add("hidden");
+
+  if (!textContainer.classList.contains("hidden")) {
+    textContainer.classList.add("popup");
+  } else {
+    textContainer.classList.remove("popup");
+  }
+}
+
+
+function toggleUpload() {
+  var textContainer = document.getElementById("textContainer");
+  var uploadContainer = document.getElementById("uploadContainer");
+
+  uploadContainer.classList.toggle("hidden");
+  textContainer.classList.add("hidden");
+
+  if (!uploadContainer.classList.contains("hidden")) {
+    uploadContainer.classList.add("popup");
+  } else {
+    uploadContainer.classList.remove("popup");
+  }
+}
+
+var uploadContainer = document.getElementById("uploadContainer");
+uploadContainer.addEventListener("dragover", function(e) {
+  e.preventDefault();
+  this.classList.add("dragover");
+});
+
+uploadContainer.addEventListener("dragleave", function() {
+  this.classList.remove("dragover");
+});
+
+uploadContainer.addEventListener("drop", function(e) {
+  e.preventDefault();
+  this.classList.remove("dragover");
+  var fileInput = document.getElementById("fileInput");
+  fileInput.files = e.dataTransfer.files;
+});
 
 </script>
