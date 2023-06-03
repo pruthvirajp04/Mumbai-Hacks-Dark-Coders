@@ -357,4 +357,30 @@ nav.close ~ .dashboard .top{
   .boxes img:hover{
     opacity: 0.5;
   }
- 
+ .imgsummBox img{
+  width: 600px;
+  height: 400px;
+
+ }
+ .mainBox{
+  display: flex;
+ }
+ .contentBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+ }
+ .textBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ }
+ .textBox h2{
+  margin-bottom: 80px;
+ }
+ .first img{
+  width: 250px;
+ }
