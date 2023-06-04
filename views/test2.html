@@ -1,146 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
   <style>
-#linkedin{
-  width: 40px;
-  border-radius: 6px;
-  margin: 4px;
-  height: 35px;
-}
-#linkedin:hover{
-opacity: 0.5;
-}
-    #insta {
-      width: 60px;
-      height: 50px;
-    }
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* height: 100vh; */
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
     }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    
+    .container {
       max-width: 600px;
-    }
-
-    .team-card {
-      background-color: #e1d7d7;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(233, 227, 227, 0.1);
+      margin: 30px auto;
       padding: 20px;
-      width: 250px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
       text-align: center;
+      color: #4285f4;
     }
-
-    .team-card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
+    
+    .form-group {
+      margin-bottom: 20px;
     }
-
-    .team-card h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .team-card p {
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 15px;
-    }
-
-    .team-card a {
-      display: inline-block;
-      /* background-color: #4285F4; */
-      color: #fff;
-      text-decoration: none;
-      /* padding: 8px 16px; */
+    
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
       border-radius: 4px;
-      transition: background-color 0.3s ease;
     }
-
-   
+    
+    textarea {
+      height: 100px;
+    }
+    
+    input[type="submit"] {
+      background-color: #4285f4;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #3367d6;
+    }
   </style>
-  <title>Team Member Cards</title>
 </head>
 <body>
-  <div class="card-container">
-    <div class="team-card">
-      <img src="../assets/pp.jpg" alt="Team Member 1">
-      <h3>Pruthviraj Patil</h3>
-      <a href="">
-
-        <img id="linkedin" src="../assets/linkedin.png" alt="">
-      </a>
-      <a href="">
-      <img id="linkedin" src="../assets/insta.png" alt=""></a>
-      <a href="">
-
-        <img id="linkedin" src="../assets/twitter.png" alt="">
-      </a>
-    </div>
-    <div class="team-card">
-      <img src="../assets/adil.jpeg" alt="Team Member 2">
-      <h3>Adil Khatri</h3>
-      <a href="">
-
-        <img id="linkedin" src="../assets/linkedin.png" alt="">
-      </a>
-      <a href="">
-      <img id="linkedin" src="../assets/insta.png" alt=""></a>
-      <a href="">
-
-        <img id="linkedin" src="../assets/twitter.png" alt="">
-      </a>
-    </div>
-    <div class="team-card">
-      <img src="../assets/harsh.jpg" alt="Team Member 3">
-      <h3>Mike Johnson</h3>
-      <a href="">
-
-        <img id="linkedin" src="../assets/linkedin.png" alt="">
-      </a>
-      <a href="">
-      <img id="linkedin" src="../assets/insta.png" alt=""></a>
-      <a href="">
-
-        <img id="linkedin" src="../assets/twitter.png" alt="">
-      </a>
-    </div>
-    <div class="team-card">
-      <img src="../assets/shubam.png" alt="Team Member 4">
-      <h3>Sarah Davis</h3>
-      <br>
-      <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"></i>
-      <a href="">
-
-        <img id="linkedin" src="../assets/linkedin.png" alt="">
-      </a>
-      <a href="">
-      <img id="linkedin" src="../assets/insta.png" alt=""></a>
-      <a href="">
-
-        <img id="linkedin" src="../assets/twitter.png" alt="">
-      </a>
-
-
-    </div>
+  <div class="container">
+    <h1>Google Form</h1>
+    <form>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Name" required>
+      </div>
+      <div class="form-group">
+        <input type="text" id="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <textarea id="message" name="message" placeholder="Message" required></textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
   </div>
-
-  
 </body>
 </html>
