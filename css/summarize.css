@@ -139,8 +139,12 @@ display: none;
 }
 
 #uploadContainer {
-border: 2px dashed #ddd;
+border: 2px dashed #141212;
 padding: 20px;
+width: 540px;
+height: 300px;
+margin: 1rem;
+border-radius: 12px;
 text-align: center;
 }
 
