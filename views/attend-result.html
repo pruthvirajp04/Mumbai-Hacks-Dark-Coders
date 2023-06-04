@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!----======== CSS ======== -->
-     <link rel="stylesheet" href="../css/attendee.css">
-
+     <link rel="stylesheet" href="../css/attend-result.css">
      <link rel="stylesheet" href="../css/sidebar.css">
 
 
@@ -46,7 +45,6 @@
                     <i class="uil uil-thumbs-up"></i>
                     <span class="link-name">Audio to Text</span>
                 </a></li>
-           
                 <li><a href="./team.html">
                     <i class="uil uil-comments"></i>
                     <span class="link-name">Team</span>
@@ -72,7 +70,7 @@
             </ul>
         </div>
     </nav>
-
+    
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
@@ -85,52 +83,31 @@
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
+       
         <div class="dash-content">
             
         
                     <div class="summaryBox">
-                        
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Get attendance in a click</span>
-                </div>
-                    
-             
+                        <div class="contentTop">
+                                <div class="textContent">
+                                 
+                                  
+                                </div>
+                            <div class="title imgTextBox">
+                        <img class="resultIMG" src="../assets/results.png" alt="">
+            
+                                <span class="text">Your results are ready ...</span>
+                            </div>
+                        </div>
+            
                        
                       </div>
-                      <div class="formBox">
-
-                          <div class="form-container">
-    
-                              <form id="fileForm" action="./attend-result.html">
-                       <div class="dropBox">
-                        <div class="drop-zone" id="dropZone">
-                            <span>Drag and drop files here</span><br>
-                            <span>or</span><br>
-                            <label for="fileInput" class="file-input-label">Browse Files</label>
-                            <input type="file" id="fileInput" class="file-input" multiple>
-                          </div>
-                        
-                          <ul id="fileList" class="file-list"></ul>
-                          <br>
-                          <div class="btnBox">
-        
-                              <button type="submit">Submit</button>
+               
             
-                              <button type="reset" onclick="resetForm()">Reset</button>
-                          </div>
-                        </div>
-        
-                    </form>
-                          </div>
-                      </div>
-           
   
    
         </div>
-        
     </section>
- 
 
 </body>
 </html>
@@ -166,47 +143,5 @@ sidebarToggle.addEventListener("click", () => {
     }else{
         localStorage.setItem("status", "open");
     }
-});
-
-function resetForm() {
-  document.getElementById("fileForm").reset();
-  document.getElementById("fileList").innerHTML = "";
-}
+})
 </script>
-<script>
-    var dropZone = document.getElementById('dropZone');
-    var fileInput = document.getElementById('fileInput');
-    var fileList = document.getElementById('fileList');
-
-    dropZone.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      dropZone.classList.add('highlight');
-    });
-
-    dropZone.addEventListener('dragleave', function(e) {
-      e.preventDefault();
-      dropZone.classList.remove('highlight');
-    });
-
-    dropZone.addEventListener('drop', function(e) {
-      e.preventDefault();
-      dropZone.classList.remove('highlight');
-      var files = e.dataTransfer.files;
-      handleFiles(files);
-    });
-
-    fileInput.addEventListener('change', function() {
-      var files = fileInput.files;
-      handleFiles(files);
-    });
-
-    function handleFiles(files) {
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var listItem = document.createElement('li');
-        listItem.classList.add('file-item');
-        listItem.textContent = file.name;
-        fileList.appendChild(listItem);
-      }
-    }
-  </script>
